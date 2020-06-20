@@ -35,11 +35,27 @@ class BasePage:
         select = Select(self.driver.find_element(*locator))
         select.select_by_visible_text(text)
 
-    def wait_for_loading(self, locator):
+    def _wait_for_loading(self, locator):
+        """Custom waitter web elements"""
+        wait = WebDriverWait(self.driver, 5)
         try:
             self.driver.implicitly_wait(3)
-            WebDriverWait(self, 6).until(ec.presence_of_element_located(locator))
+            wait.until(ec.presence_of_element_located(locator))
         except NoSuchElementException:
             print('Element is not found')
-        finally:
-            self.driver.find_element(*locator)
+
+    def _wait_element_text(self, locator, text):
+        """Custom waitter for web elements text"""
+        wait = WebDriverWait(self.driver, 5)
+        try:
+            wait.until(ec.text_to_be_present_in_element(locator, text))
+        except NoSuchElementException:
+            print('Element is not found')
+
+    def _wait_alert_popup(self):
+        """Custom waitter for alert pop-up"""
+        wait = WebDriverWait(self.driver, 5)
+        try:
+            wait.until(ec.alert_is_present())
+        except NoSuchElementException:
+            print('Alert message in not found')
