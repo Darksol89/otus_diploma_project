@@ -1,0 +1,7 @@
+.git
+.env*
+.venv*
+.python
+.gitignore
+*.md
+.idea
