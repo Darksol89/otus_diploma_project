@@ -1,7 +1,9 @@
+"""Special fixtures for tests working"""
 import pytest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from PageObject.LoginPage import LoginPage
 
 
@@ -9,7 +11,7 @@ def pytest_addoption(parser):
     """Parameters for running from command-line"""
     parser.addoption('--url',
                      action='store',
-                     default='http://localhost:8080',
+                     default='http://host.docker.internal:8080',
                      help='Url for YouTrack dashboard')
     parser.addoption('--browser_name',
                      action='store',
@@ -31,14 +33,18 @@ def browser_driver(request):
     browser = request.config.getoption('--browser_name')
     if browser == 'chrome':
         options = webdriver.ChromeOptions()
-        # options.add_argument('headless')
+        options.add_argument('headless')
         options.add_argument('--ignore-certificate-errors')
         browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
     elif browser == 'firefox':
         options = webdriver.FirefoxOptions()
-        # options.add_argument('-headless')
+        options.add_argument('-headless')
         browser = webdriver.Firefox(executable_path=GeckoDriverManager().install(), options=options)
-
+    elif browser == 'remote':
+        options = webdriver.ChromeOptions()
+        options.add_argument('--ignore-certificate-errors')
+        browser = webdriver.Remote(command_executor='http://host.docker.internal:4444/wd/hub',
+                                   desired_capabilities=DesiredCapabilities.CHROME, options=options)
     yield browser
     browser.quit()
 
@@ -52,6 +58,7 @@ def get_url(request, browser_driver):
 
     return open_link
 
+
 @pytest.fixture()
 def login_to_youtrack(request, browser_driver):
     """Input username and password for authorization"""
@@ -60,3 +67,11 @@ def login_to_youtrack(request, browser_driver):
     LoginPage(browser_driver) \
         .open_login_page() \
         .login_as_user(username=username, password=password)
+
+
+@pytest.fixture()
+def login_as_guest_to_yt(browser_driver):
+    """Log In to site as Guest"""
+    LoginPage(browser_driver) \
+        .open_login_page() \
+        .login_as_guest()
