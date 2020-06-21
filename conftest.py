@@ -11,7 +11,7 @@ def pytest_addoption(parser):
     """Parameters for running from command-line"""
     parser.addoption('--url',
                      action='store',
-                     default='http://host.docker.internal:8080',
+                     default='http://localhost:8080',
                      help='Url for YouTrack dashboard')
     parser.addoption('--browser_name',
                      action='store',
@@ -40,11 +40,23 @@ def browser_driver(request):
         options = webdriver.FirefoxOptions()
         options.add_argument('-headless')
         browser = webdriver.Firefox(executable_path=GeckoDriverManager().install(), options=options)
-    elif browser == 'remote':
+    elif browser == 'selenium-server-chrome':
         options = webdriver.ChromeOptions()
         options.add_argument('--ignore-certificate-errors')
         browser = webdriver.Remote(command_executor='http://host.docker.internal:4444/wd/hub',
                                    desired_capabilities=DesiredCapabilities.CHROME, options=options)
+    elif browser == 'selenoid-chrome':
+        capabilities = {
+            "browserName": "chrome",
+            "version": "83.0",
+            "enableVNC": True,
+            "enableVideo": False
+        }
+        browser = webdriver.Remote(
+            command_executor="http://172.17.0.1:4445/wd/hub",
+            desired_capabilities=capabilities)
+        browser.maximize_window()
+
     yield browser
     browser.quit()
 
