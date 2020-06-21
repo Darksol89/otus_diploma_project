@@ -9,4 +9,4 @@ RUN apt update
 RUN apt install python3-pip -y
 RUN pip3 install -r requirements.txt
 
-CMD pytest -v --alluredir=allure-report --browser_name=remote --url=http://host.docker.internal:8080
+CMD pytest -v --alluredir=allure-report --browser_name=selenoid-chrome --url=http://172.17.0.1:8080
