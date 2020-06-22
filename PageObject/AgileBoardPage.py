@@ -9,8 +9,8 @@ class AgileBoardPage(BasePage):
     def check_existing_board(self):
         try:
             self.driver.find_element(*AgileBoards.SETTINGS_BTN)
-            self.click_settings_button()\
-                .click_delete_board_button()\
+            self.click_settings_button() \
+                .click_delete_board_button() \
                 .click_confirm_ok_button()
         except:
             pass
@@ -36,7 +36,6 @@ class AgileBoardPage(BasePage):
 
     def click_create_button(self):
         self._click_to_element(AgileBoards.CREATE_BOARD_BTN)
-        #self._wait_for_loading(AgileBoards.SETTINGS_BTN)
         return self
 
     def click_settings_button(self):

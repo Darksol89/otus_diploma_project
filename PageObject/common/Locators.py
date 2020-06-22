@@ -1,12 +1,14 @@
 """Different locators for elements in web application"""
 from selenium.webdriver.common.by import By
 
+
 class Login:
     """Locators for Login page without authorization"""
     USERNAME_FIELD = (By.CSS_SELECTOR, "input[data-test='username-field']")
     PASSWORD_FIELD = (By.CSS_SELECTOR, "input[data-test='password-field']")
     LOG_IN_BUTTON = (By.CSS_SELECTOR, ".form-row button[data-test='login-button']")
     LOG_IN_AS_GUEST = (By.CSS_SELECTOR, ".login-page__bottom-panel a[data-test='login-as-guest-button']")
+
 
 class Dashboard:
     """Locators for Dashboard page"""
@@ -30,8 +32,11 @@ class Dashboard:
     ADD_MARKDOWN_NOTES = (By.CSS_SELECTOR, "span[title='Markdown Notes']")
     ADD_WIKI_NOTES = (By.CSS_SELECTOR, "span[title='Wiki Notes']")
 
+
 class Alerts:
+    """Locators for Alert message"""
     ALERT_MESSAGE = (By.CSS_SELECTOR, "div[data-test='alert']")
+
 
 class Widgets:
     """Locators for Widgets dialog windows"""
@@ -48,6 +53,7 @@ class Widgets:
     WIKI_NOTES_TEXT_RESULT = (By.CSS_SELECTOR, "div[data-test='wikiText']")
     WIDGET_DROPDOWN_MENU_BTN = (By.CSS_SELECTOR, "div[data-test='widget-actions-dropdown'] button")
     WIDGET_DROPDOWN_REMOVE = (By.XPATH, "//span[contains(text(), 'Remove')]")
+
 
 class AgileBoards:
     """Locators for Agile boards"""
@@ -67,6 +73,7 @@ class AgileBoards:
     CONFIRM_REJECT_BTN = (By.CSS_SELECTOR, "button[data-test='confirm-reject-button']")
     SETTINGS_BTN = (By.CSS_SELECTOR, "button[data-test='boardSettingsToggler']")
 
+
 class NavigationMenu:
     """Locators for Navigation Menu"""
     NEW_ISSUE_BUTTON = (By.CSS_SELECTOR, "button[data-test='createIssueButton']")
@@ -77,6 +84,7 @@ class NavigationMenu:
     REPORTS = (By.CSS_SELECTOR, "a[data-test-id='Reports']")
     PROJECTS = (By.CSS_SELECTOR, "a[data-test-id='Projects']")
     KNOWLEDGE_BASE = (By.CSS_SELECTOR, "a[data-test-id='Knowledge Base']")
+
 
 class HeaderTray:
     """Locators for Header Tray area"""
@@ -99,4 +107,3 @@ class Issue:
     CREATE_ISSUE_BTN = (By.CSS_SELECTOR, "button[data-test='createIssueAction']")
     CANCEL_BTN = (By.CSS_SELECTOR, "button[data-test='cancelAction']")
     ISSUE_SUMMARY_RESULT = (By.CSS_SELECTOR, "h1[data-test='issueSummary']")
-

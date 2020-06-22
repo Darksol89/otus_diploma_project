@@ -1,9 +1,8 @@
 """Methods for working with widgets"""
 
 from PageObject.BasePage import BasePage
-from PageObject.common.Locators import Widgets, Dashboard, Alerts
-from PageObject.DashboardPage import DashboardPage
-from selenium.webdriver.common.by import By
+from PageObject.common.Locators import Widgets, Alerts
+
 
 class WidgetPage(BasePage):
 

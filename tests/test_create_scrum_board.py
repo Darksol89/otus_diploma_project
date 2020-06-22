@@ -4,9 +4,11 @@ from PageObject.NavigationMenuPage import NavigationMenuPage
 from PageObject.AgileBoardPage import AgileBoardPage
 from PageObject.common.Locators import AgileBoards
 
+
 @allure.title('Create Scrum board testing')
 @pytest.mark.parametrize('agile_name', ['The Best Scrum board'])
 def test_create_scrum_board(browser_driver, get_url, login_to_youtrack, agile_name):
+    """Test - create Scrum board"""
     NavigationMenuPage(browser_driver).click_agile_board()
     AgileBoardPage(browser_driver) \
         .check_existing_board() \

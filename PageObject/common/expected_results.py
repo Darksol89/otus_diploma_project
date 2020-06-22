@@ -1,4 +1,4 @@
-"""Expected results for tests"""
+"""Methods with Expected results for tests"""
 
 from PageObject.BasePage import BasePage
 from PageObject.common.Locators import Dashboard, Alerts, Issue, Widgets
@@ -19,6 +19,5 @@ class ExpectedResults(BasePage):
         return issue_summary
 
     def check_widget_text(self):
-        """Check created widget from User"""
         widget_name = self.driver.find_element(*Widgets.WIKI_NOTES_TEXT_RESULT).text
         return widget_name

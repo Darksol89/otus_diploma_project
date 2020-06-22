@@ -10,6 +10,7 @@ from PageObject.common.expected_results import ExpectedResults
 @pytest.mark.skip
 @pytest.mark.parametrize('dash_name, issue_name', [('Space-X', 'Space-X_issue')])
 def test_add_new_issue(browser_driver, get_url, login_to_youtrack, dash_name, issue_name):
+    """Test - Create new issue"""
     DashboardPage(browser_driver) \
         .click_dashboard_dropdown() \
         .create_new_dashboard(dash_name)

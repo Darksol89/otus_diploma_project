@@ -4,7 +4,6 @@ from PageObject.BasePage import BasePage
 from PageObject.common.Locators import NavigationMenu
 
 
-
 class NavigationMenuPage(BasePage):
 
     def click_new_issue(self):

@@ -7,7 +7,8 @@ from PageObject.common.Locators import AgileBoards
 
 @allure.title('Create and delete board')
 @pytest.mark.parametrize('agile_name', ['My Kanban board'])
-def test_create_scrum_board(browser_driver, get_url, login_to_youtrack, agile_name):
+def test_delete_agile_board(browser_driver, get_url, login_to_youtrack, agile_name):
+    """Test - Create and Delete Kanban board"""
     NavigationMenuPage(browser_driver).click_agile_board()
     AgileBoardPage(browser_driver) \
         .check_existing_board() \
