@@ -1,2 +1,16 @@
-# otus_diploma_project
-Diploma project for online school "OTUS". 
+# Дипломный проект к курсу "Python QA Engineer" от онлайн-школы OTUS
+
+## Тема диплома - Тестирование приложения JetBrains YouTrack**
+
+**Для запуска проекта у себя сделать следующее:**
+- Склонировать себе на машину репозиторий
+
+- Выполнить команду для установки необходимых библиотек 
+  ```pip install -r requrements.txt```
+  
+- Для запуска из терминала выполнить команду
+  ```pytest -v --alluredir=allure-report```
+  
+- Для сборки Allure-отчета
+  ```allure serve allure-report```
+  
